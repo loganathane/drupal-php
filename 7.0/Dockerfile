@@ -88,6 +88,22 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
     echo 'extension=uploadprogress.so' > /etc/php7/conf.d/20_uploadprogress.ini && \
     cd .. && rm -rf ./master.zip ./uploadprogress-master && \
 
+    #Install NodeJS
+    nodejs \
+    #&& ln -s /usr/local/bin/nodejs /usr/local/bin/node \
+    #&& nodejs-legacy \
+
+    #Install NPM
+    && curl -L https://npmjs.org/install.sh | sh \
+
+    #Install Bower, Gulp e Less
+    && npm install bower -g \
+    npm install gulp -g \
+    npm install less -g \
+    npm link bower \
+    npm link gulp \
+    npm link less \
+    
     # Install composer
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 
